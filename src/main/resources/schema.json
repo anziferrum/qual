@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product",
+  "description": "A product from the catalog",
+  "type": "object",
+
+  "properties": {
+    "intent": {
+      "description": "Payer intention",
+      "type": "string",
+      "enum": ["order"]
+    },
+
+    "notification_url": {
+      "description": "URL for notifications",
+      "type": "string"
+    },
+
+    "payer": { "$ref": "#/definitions/payer" },
+    "transaction": { "$ref": "#/definitions/transaction" }
+  },
+
+  "required": ["intent", "notification_url", "payer", "transaction"],
+
+  "definitions": {
+    "payer": {
+      "type": "object",
+      "description": "Payer information",
+
+      "properties": {
+        "email": {
+          "description": "Payer email",
+          "type": "string",
+          "pattern": "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,}"
+        }
+      },
+
+      "required": ["email"]
+    },
+
+    "transaction": {
+      "type": "object",
+      "description": "Payment amount",
+
+      "properties": {
+        "external_id": {
+          "description": "Transaction external identifier",
+          "type": "string",
+          "pattern": "\\d+"
+        },
+
+        "description": {
+          "type": "string",
+          "description": "Transaction description"
+        },
+
+        "amount": { "$ref": "#/definitions/amount" }
+      },
+
+      "required": ["amount"]
+    },
+
+    "amount": {
+      "type": "object",
+      "description": "Transaction amount",
+
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Amount value",
+          "minimum": 0,
+          "exclusiveMinimum": true
+        },
+
+        "currency": {
+          "type": "string",
+          "description": "Amount curency",
+          "pattern": "[A-Z]{3}"
+        }
+      },
+
+      "required": ["value", "currency"]
+    }
+  }
+}
