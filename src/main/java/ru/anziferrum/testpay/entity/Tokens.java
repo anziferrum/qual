@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Entity
 @org.hibernate.annotations.Entity(dynamicUpdate = true)
-@Table(name = "tokens", uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
+@Table(name = "tokens", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 public class Tokens {
     @Id
     @GenericGenerator(name="gen", strategy="increment")
