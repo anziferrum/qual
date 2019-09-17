@@ -6,8 +6,6 @@ import org.springframework.http.HttpStatus;
  * @author anziferrum
  */
 public class E400Exception extends AbstractCustomException {
-    private String details;
-
     public E400Exception(String message) {
         super(message);
         this.details = message;
@@ -21,11 +19,6 @@ public class E400Exception extends AbstractCustomException {
     @Override
     public String getErrorCode() {
         return "INVALID_REQUEST";
-    }
-
-    @Override
-    public String getDetails() {
-        return details;
     }
 
     @Override

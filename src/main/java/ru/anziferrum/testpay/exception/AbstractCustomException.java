@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
  * This was created to provide more clear error messages in logs
  */
 public abstract class AbstractCustomException extends Exception {
+    String details;
+
     public AbstractCustomException(String message) {
         super(message);
     }
@@ -18,5 +20,7 @@ public abstract class AbstractCustomException extends Exception {
 
     abstract String getErrorDescription();
 
-    abstract String getDetails();
+    String getDetails() {
+        return details;
+    }
 }

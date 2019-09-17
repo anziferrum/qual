@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomizedResponseEntityExceptionHandler.class);
 
-    @ExceptionHandler( { E400Exception.class, E401Exception.class, E415Exception.class, E500Exception.class } )
+    @ExceptionHandler( { AbstractCustomException.class } )
     public final ResponseEntity<String> handleException(AbstractCustomException ex) {
         return new ResponseEntity<>(details(ex), ex.getStatusCode());
     }
